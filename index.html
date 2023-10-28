@@ -6,17 +6,28 @@
   </head>
   <body>
     <img id = "image" src="#" />
-    <button id ="new-image">click here for a new cat image!</button>
+    <button id ="new-image">click here for a new image!</button>
+    <input type ="text" id ="search-bar" placeholder ="Search...">
 
     <script>
       const img = document.getElementById("image");
-      const newImgBtn = document.getElementById("new-image")
 
+      const newImgBtn = document.getElementById("new-image")
       newImgBtn.addEventListener("click", fetchData);
+
+      const searchBar = document.getElementById("search-bar");
+
+      let userChoice = "naruto";
+
+      searchBar.addEventListener("keydown", event => {
+        if(event.key === "Enter"){
+          userChoice = searchBar.value;
+        }
+      });
 
       function fetchData(){
       fetch(
-        "https://api.giphy.com/v1/gifs/translate?api_key=GYfcaPsJBQrP20VZPxqMRAY38fRd9eBP&s=cats",
+        `https://api.giphy.com/v1/gifs/translate?api_key=GYfcaPsJBQrP20VZPxqMRAY38fRd9eBP&s=${userChoice}`,
         { mode: "cors" },
       )
         .then(function (response) {
