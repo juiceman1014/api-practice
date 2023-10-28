@@ -5,10 +5,16 @@
     <title>Document</title>
   </head>
   <body>
-    <img src="#" />
+    <img id = "image" src="#" />
+    <button id ="new-image">click here for a new cat image!</button>
 
     <script>
-      const img = document.querySelector("img");
+      const img = document.getElementById("image");
+      const newImgBtn = document.getElementById("new-image")
+
+      newImgBtn.addEventListener("click", fetchData);
+
+      function fetchData(){
       fetch(
         "https://api.giphy.com/v1/gifs/translate?api_key=GYfcaPsJBQrP20VZPxqMRAY38fRd9eBP&s=cats",
         { mode: "cors" },
@@ -19,6 +25,9 @@
         .then(function (response) {
           img.src = response.data.images.original.url;
         });
+      }
+      
+      fetchData();
     </script>
   </body>
 </html>
