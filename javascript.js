@@ -21,10 +21,22 @@ function fetchData(searchTerm) {
     { mode: "cors" },
   )
     .then(function (response) {
-      return response.json();
+      if(response.ok){
+        return response.json();
+      }else{
+        throw new Error("Network error");
+      }
     })
     .then(function (response) {
+      if(response.data && response.data.images && response.data.images.original.url){
       img.src = response.data.images.original.url;
+      }else{
+        throw new Error("No gifs with provided search input")
+      }
+    })
+    .catch(function (error){
+      console.log(error);
+      img.src="";
     });
 }
 
