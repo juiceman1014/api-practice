@@ -1,3 +1,3 @@
 # api-practice
 
-Practicing api's using giphy. Website can produce any image based on user's choice.
+Refactored code from main branch. This code uses async/awaits.
